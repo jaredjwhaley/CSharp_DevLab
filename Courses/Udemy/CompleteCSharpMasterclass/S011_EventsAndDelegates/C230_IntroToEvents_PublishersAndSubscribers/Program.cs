@@ -9,8 +9,11 @@ namespace C230_IntroToEvents_PublishersAndSubscribers
     /* === NOTES ==================================================================================
      * === Introduction to Events, Publishers, and Subscribers ===
      * - Events
-     *   - An event is a message sent by an object to signal the occurrence of an action. The object that sends the event is called the publisher, and the objects that receive the event are called subscribers.
-     *   - Events are based on delegates. An event is essentially a delegate with some additional restrictions.
+     *   - Events encapsulate (not extend) the delegate class.
+     *   - Consider them to be a controlled method of accessing the delegate. They provide a way
+     *     for a class to notify other classes or objects when something of interest occurs.
+     *   - Events are sent by objects called publishers, and the objects that receive the
+     *     event are called subscribers.
      *   - Example: public event MyDelegate MyEvent;
      *   
      */
@@ -38,6 +41,9 @@ namespace C230_IntroToEvents_PublishersAndSubscribers
     public delegate void MyDelegate(MyEventArgs eventArgs);
 
     // 3. Publisher Class:
+    //   - The publisher class functionally owns the event.
+    //     - It is responsible for declaring and raising the event.
+    //   - No other class can raise the event, but any class can subscribe to it.
     public class Publisher
     {
         // Declare an event of type MyDelegate.
