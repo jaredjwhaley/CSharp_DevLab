@@ -10,14 +10,12 @@
     <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S03_Http_MvcAndWebApi/C017_HttpNotes/C017_HttpNotes.csproj" />
     <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S03_Http_MvcAndWebApi/C019_HttpResponseHeaders/C019_HttpResponseHeaders.csproj" />
   </Folder>
-  <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/">
-    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/Exercises/Exercises.csproj" />
-    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/Lectures/Lectures.csproj" />
-  </Folder>
+  <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/" />
   <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/">
-    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C222_IntroductionToDelegates/C222_IntroductionToDelegates.csproj" Id="2c4c8157-862f-4031-b815-f96765d5841f" />
-    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C228_MulticastDelegates/C228_MulticastDelegates.csproj" Id="e2314e3a-62e5-4136-bcac-a0f68db236d9" />
-    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C230_IntroToEvents_PublishersAndSubscribers/C230_IntroToEvents_PublishersAndSubscribers.csproj" Id="06124184-01e1-4b87-bd00-cc1ded32bd3e" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C222_IntroductionToDelegates/C222_IntroductionToDelegates.csproj" Id="4cb693c4-c0a3-49e5-a92d-3eabcb8f8d6b" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C228_MulticastDelegates/C228_MulticastDelegates.csproj" Id="c142304f-30b7-4bba-aa2e-c1651d904bff" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C230_IntroToEvents_PublishersAndSubscribers/C230_IntroToEvents_PublishersAndSubscribers.csproj" Id="37fbc5c4-f532-4387-bb26-0d1eb6e0acdb" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C231_TemperatureMonitor/C231_TemperatureMonitor.csproj" Id="7b2032ea-fbcc-489f-903b-485f06b44d6d" />
   </Folder>
   <Folder Name="/Topics/">
     <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />
