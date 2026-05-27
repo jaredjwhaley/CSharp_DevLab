@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Courses/" />
+  <Folder Name="/Courses/Udemy.CompleteCSharpMasterclass/">
+    <Project Path="Courses/Udemy.CompleteCSharpMasterclass/Exercises/Exercises.csproj" />
+    <Project Path="Courses/Udemy.CompleteCSharpMasterclass/Lectures/Lectures.csproj" />
+  </Folder>
+  <Folder Name="/Topics/">
+    <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />
+  </Folder>
+</Solution>
