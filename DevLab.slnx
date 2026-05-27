@@ -3,12 +3,12 @@
   <Folder Name="/Courses/Udemy/" />
   <Folder Name="/Courses/Udemy/AspDotNetCoreUltimate/" />
   <Folder Name="/Courses/Udemy/AspDotNetCoreUltimate/S02_GettingStarted_MvcAndWebApi/">
-    <Project Path="Courses/Udemy/AspDotNetCoreTrueUltimate/S02_GettingStarted_MvcAndWebApi/C011_FirstAspDotNetApp/C011_FirstAspDotNetApp.csproj" />
-    <Project Path="Courses/Udemy/AspDotNetCoreTrueUltimate/S02_GettingStarted_MvcAndWebApi/C013_LaunchSettings/C013_LaunchSettings.csproj" />
+    <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S02_GettingStarted_MvcAndWebApi/C011_FirstAspDotNetApp/C011_FirstAspDotNetApp.csproj" />
+    <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S02_GettingStarted_MvcAndWebApi/C013_LaunchSettings/C013_LaunchSettings.csproj" />
   </Folder>
   <Folder Name="/Courses/Udemy/AspDotNetCoreUltimate/S03_Http_MvcAndWebApi/">
-    <Project Path="Courses/Udemy/AspDotNetCoreTrueUltimate/S03_Http_MvcAndWebApi/C017_HttpNotes/C017_HttpNotes.csproj" />
-    <Project Path="Courses/Udemy/AspDotNetCoreTrueUltimate/S03_Http_MvcAndWebApi/C019_HttpResponseHeaders/C019_HttpResponseHeaders.csproj" />
+    <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S03_Http_MvcAndWebApi/C017_HttpNotes/C017_HttpNotes.csproj" />
+    <Project Path="Courses/Udemy/AspDotNetCoreUltimate/S03_Http_MvcAndWebApi/C019_HttpResponseHeaders/C019_HttpResponseHeaders.csproj" />
   </Folder>
   <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/">
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/Exercises/Exercises.csproj" />
