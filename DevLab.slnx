@@ -14,6 +14,10 @@
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/Exercises/Exercises.csproj" />
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/Lectures/Lectures.csproj" />
   </Folder>
+  <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/">
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C222_IntroductionToDelegates/C222_IntroductionToDelegates.csproj" Id="2c4c8157-862f-4031-b815-f96765d5841f" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C228_MulticastDelegates/C228_MulticastDelegates.csproj" Id="e2314e3a-62e5-4136-bcac-a0f68db236d9" />
+  </Folder>
   <Folder Name="/Topics/">
     <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />
   </Folder>
