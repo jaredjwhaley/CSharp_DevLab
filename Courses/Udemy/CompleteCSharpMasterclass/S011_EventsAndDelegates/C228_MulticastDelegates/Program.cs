@@ -46,5 +46,42 @@ namespace C228_MulticastDelegates
         {
             Console.WriteLine("AnotherMethod: " + message);
         }
+
+        // To invoke safely, we can check if the delegate is not null before invoking it:
+        //   - This is important because if the delegate has no methods in its invocation list, it
+        //     will be null and invoking it will throw a NullReferenceException.
+        public static void SafeInvoke(MyDelegate del, string message)
+        {
+            if (del != null)
+            {
+                del(message);
+            }
+        }
+        // Alternatively, we can use the null-conditional operator (?.) to invoke the delegate safely:
+        //  - This is a more concise way to check for null before invoking the delegate.
+        //  - Example: del?.Invoke(message);
+
+        // To check if a specific method is in the invocation list of a multicast delegate, we can use the GetInvocationList() method:
+        /// <summary>
+        /// Determines whether a method with the specified name appears in the invocation list of the provided multicast
+        /// delegate.
+        /// </summary>
+        /// <param name="del">The multicast delegate whose invocation list is searched; may be null.</param>
+        /// <param name="methodName">The name of the method to locate in the delegate's invocation list.</param>
+        /// <returns>True if a method with the specified name is found in the delegate's invocation list; otherwise, false.</returns>
+        public static bool IsMethodInDelegate(MyDelegate del, string methodName)
+        {
+            if (del != null)
+            {
+                foreach (var d in del.GetInvocationList())
+                {
+                    if (d.Method.Name == methodName)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
