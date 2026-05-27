@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    // The text in quotes here is simply the profile name. In this case, 'Kestrel'.
+    // This profile is used to launch the application using the Kestrel web server, which is the
+    //   default web server for ASP.NET Core applications. The settings within this profile
+    //   specify how the application should be launched and configured when using Kestrel.
+    "Kestrel": {
+      // The 'commandName' being declared as 'Project' means that the launchSettings.json file is
+      //   being used to launch the project directly (without using IIS Express).",
+      "commandName": "Project",
+      // The 'dotnetRunMessages' being set to 'true' means that the output from the 'dotnet run'
+      //   command will be displayed in the console when the project is launched."
+      "dotnetRunMessages": true,
+      // The 'launchBrowser' being set to 'true' means that the default web browser will
+      //   automatically open and navigate to the specified 'applicationUrl' when the project is
+      //   launched.
+      "launchBrowser": true,
+      // The 'applicationUrl' is simply the URL that the application will be hosted on when it is
+      //   launched.
+      "applicationUrl": "http://localhost:5279",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    // This profile is used to launch the application using IIS Express.
+    // IIS Express is a lightweight, self-contained version of IIS (A reverse proxy server) that is
+    //   used for development purposes. It allows developers to test their applications in an
+    //   environment that closely mimics a production server.
+    "IIS Express": {
+      // The 'commandName' being declared as 'IISExpress' means that the launchSettings.json file
+      //   is being used to launch the application using IIS Express.
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  },
+  // The 'iisSettings' section contains configuration settings specific to IIS Express when
+  //   launching the application using the 'IIS Express' profile.
+  // This section is required when using the 'IIS Express' profile to specify how IIS Express
+  //   should be configured when launching the application.
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5280",
+      "sslPort": 0
+    }
+  }
+}
