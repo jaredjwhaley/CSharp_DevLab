@@ -41,17 +41,31 @@ namespace C231_TemperatureMonitor
 
         public void HandleTemperatureChanged(object sender, TemperatureChangedEventArgs e)
         {
+            Console.Write($"Temperature is {e.NewTemperature:F0}.");
             if (e.NewTemperature > MaxTemperature)
             {
-                Console.WriteLine($"Temperature is {e.NewTemperature:F0}°F. Turning on AC.");
+                Console.WriteLine($" Turning on AC.");
+                foreach (var ac in AirConditioners)
+                {
+                    ac.TurnOn();
+                }
             }
             else if (e.NewTemperature < MinTemperature)
             {
-                Console.WriteLine($"Temperature is {e.NewTemperature:F0}°F. Turning on heater.");
+                Console.WriteLine($".. Guess we're gonna freeze.");
+                foreach (var ac in AirConditioners)
+                {
+                    // Heaters don't exist
+                    ac.TurnOff();
+                }
             }
             else
             {
-                Console.WriteLine($"Temperature is {e.NewTemperature:F0}°F. Temperature is within the comfortable range.");
+                Console.WriteLine();
+                foreach (var ac in AirConditioners)
+                {
+                    ac.TurnOff();
+                }
             }
         }
     }

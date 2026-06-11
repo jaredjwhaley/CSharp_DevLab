@@ -27,8 +27,8 @@
                 if (_lastKnownTemp != value)
                 {
                     // Update the last known temperature and raise the event.
-                    _lastKnownTemp = value;
                     OnTemperatureChanged(new TemperatureChangedEventArgs(_lastKnownTemp, value));
+                    _lastKnownTemp = value;
                 }
             }
         }
@@ -48,6 +48,11 @@
         /// <remarks>Provides the new temperature value in the TemperatureChangedEventArgs. Subscribers
         /// can handle this event to respond to temperature changes.</remarks>
         public event EventHandler<TemperatureChangedEventArgs>? TemperatureChanged;
+
+        /// <summary>
+        /// Raises the TemperatureChanged event with the provided TemperatureChangedEventArgs.
+        /// </summary>
+        /// <param name="e"></param>
         protected void OnTemperatureChanged(TemperatureChangedEventArgs e)
         {
             TemperatureChanged?.Invoke(this, e);
