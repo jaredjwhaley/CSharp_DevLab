@@ -41,17 +41,26 @@ namespace C231_TemperatureMonitor
 
         public void HandleTemperatureChanged(object sender, TemperatureChangedEventArgs e)
         {
-            Console.Write($"Temperature is {e.NewTemperature:F0}.");
+            Console.Write($"Temperature is {e.NewTemperature:F2}.");
             if (e.NewTemperature > MaxTemperature)
             {
-                Console.WriteLine($" Turning on AC.");
-                foreach (var ac in AirConditioners)
+                if (AirConditioners.First().IsOff)
                 {
-                    ac.TurnOn();
+                    Console.WriteLine($" Turning on AC.");
+                    foreach (var ac in AirConditioners)
+                    {
+                        ac.TurnOn();
+                    }
+                    // TODO: for each Heater in Heaters, turn off the heater
+                }
+                else
+                {
+                    Console.WriteLine();
                 }
             }
             else if (e.NewTemperature < MinTemperature)
             {
+                // TODO: Implement Heater class and use them
                 Console.WriteLine($".. Guess we're gonna freeze.");
                 foreach (var ac in AirConditioners)
                 {
@@ -61,10 +70,16 @@ namespace C231_TemperatureMonitor
             }
             else
             {
-                Console.WriteLine();
-                foreach (var ac in AirConditioners)
+                if (AirConditioners.First().IsOn)
                 {
-                    ac.TurnOff();
+                    Console.WriteLine($" Turning off AC.");
+                    foreach (var ac in AirConditioners)
+                    {
+                        ac.TurnOff();
+                    }
+                } else
+                {
+                    Console.WriteLine();
                 }
             }
         }
