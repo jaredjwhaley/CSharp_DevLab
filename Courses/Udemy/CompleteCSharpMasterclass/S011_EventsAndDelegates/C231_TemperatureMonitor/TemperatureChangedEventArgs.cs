@@ -1,5 +1,8 @@
 ﻿namespace C231_TemperatureMonitor
 {
+    /// <summary>
+    /// Event arguments for the TemperatureChanged event, containing the old and new temperature values.
+    /// </summary>
     public class TemperatureChangedEventArgs : EventArgs
     {
         public Temperature OldTemperature { get; }

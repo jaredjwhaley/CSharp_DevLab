@@ -75,16 +75,31 @@
         //   - NOTE: Factory methods provide alternative ways to create instances of Temperature
         //     with specific units
 
+        /// <summary>
+        /// Creates a Temperature instance from a Celsius value.
+        /// </summary>
+        /// <param name="degrees">Degrees in Celsius to convert and store as Kelvin internally.</param>
+        /// <returns>A new Temperature instance with the specified Celsius value.</returns>
         public static Temperature FromCelsius(double degrees)
         {
             return new Temperature(degrees, Temperature.UnitTypes.Celsius);
         }
 
+        /// <summary>
+        /// Creates a Temperature instance from a Fahrenheit value.
+        /// </summary>
+        /// <param name="degrees">Degrees in Fahrenheit to convert and store as Kelvin internally.</param>
+        /// <returns>A new Temperature instance with the specified Fahrenheit value.</returns>
         public static Temperature FromFahrenheit(double degrees)
         {
             return new Temperature(degrees, Temperature.UnitTypes.Fahrenheit);
         }
 
+        /// <summary>
+        /// Creates a Temperature instance from a Kelvin value.
+        /// </summary>
+        /// <param name="degrees">Degrees in Kelvin to store internally without conversion.</param>
+        /// <returns>A new Temperature instance with the specified Kelvin value.</returns>
         public static Temperature FromKelvin(double degrees)
         {
             return new Temperature(degrees, Temperature.UnitTypes.Kelvin);
@@ -93,31 +108,63 @@
         // ----------------------------------------------------------------------------------------
         // Conversion Methods
         // ----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Converts a temperature value from Kelvin to Celsius.
+        /// </summary>
+        /// <param name="value">Temperature in Kelvin to convert to Celsius.</param>
+        /// <returns>The equivalent temperature value in Celsius.</returns>
         public static double KelvinToCelsius(double value)
         {
             return value - 273.15;
         }
 
+        /// <summary>
+        /// Converts a temperature value from Fahrenheit to Celsius.
+        /// </summary>
+        /// <param name="value">Temperature in Fahrenheit to convert to Celsius.</param>
+        /// <returns>The equivalent temperature value in Celsius.</returns>
         public static double FahrenheitToCelsius(double value)
         {
             return (value - 32) * 5 / 9;
         }
 
+        /// <summary>
+        /// Converts a temperature value from Celsius to Kelvin.
+        /// </summary>
+        /// <param name="value">Temperature in Celsius to convert to Kelvin.</param>
+        /// <returns>The equivalent temperature value in Kelvin.</returns>
         public static double CelsiusToKelvin(double value)
         {
             return value + 273.15;
         }
 
+
+        /// <summary>
+        /// Converts a temperature value from Celsius to Fahrenheit.
+        /// </summary>
+        /// <param name="value">Temperature in Celsius to convert to Fahrenheit.</param>
+        /// <returns>The equivalent temperature value in Fahrenheit.</returns>
         public static double CelsiusToFahrenheit(double value)
         {
             return value * 9 / 5 + 32;
         }
 
+
+        /// <summary>
+        /// Converts a temperature value from Fahrenheit to Kelvin.
+        /// </summary>
+        /// <param name="value">Temperature in Fahrenheit to convert to Kelvin.</param>
+        /// <returns>The equivalent temperature value in Kelvin.</returns>
         public static double FahrenheitToKelvin(double value)
         {
             return CelsiusToKelvin(FahrenheitToCelsius(value));
         }
 
+        /// <summary>
+        /// Converts a temperature value from Kelvin to Fahrenheit.
+        /// </summary>
+        /// <param name="value">Temperature in Kelvin to convert to Fahrenheit.</param>
+        /// <returns>The equivalent temperature value in Fahrenheit.</returns>
         public static double KelvinToFahrenheit(double value)
         {
             return CelsiusToFahrenheit(KelvinToCelsius(value));

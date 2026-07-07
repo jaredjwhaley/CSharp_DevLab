@@ -1,5 +1,8 @@
 ﻿namespace C231_TemperatureMonitor
 {
+    /// <summary>
+    /// Represents an air conditioner with a specified heat transfer rate (BTU/hr) and on/off state.
+    /// </summary>
     public class AirConditioner
     {
         /// <summary>
