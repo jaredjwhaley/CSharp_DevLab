@@ -17,6 +17,9 @@
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C230_IntroToEvents_PublishersAndSubscribers/C230_IntroToEvents_PublishersAndSubscribers.csproj" Id="37fbc5c4-f532-4387-bb26-0d1eb6e0acdb" />
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C231_TemperatureMonitor/C231_TemperatureMonitor.csproj" Id="7b2032ea-fbcc-489f-903b-485f06b44d6d" />
   </Folder>
+  <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/S013_WindowsPresentationFoundation/">
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S013_WindowsPresentationFoundation/C245_WpfProject/C245_WpfProject.csproj" Id="02f772a1-e3d0-4309-89eb-7aa39014acf1" />
+  </Folder>
   <Folder Name="/Topics/">
     <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />
   </Folder>
