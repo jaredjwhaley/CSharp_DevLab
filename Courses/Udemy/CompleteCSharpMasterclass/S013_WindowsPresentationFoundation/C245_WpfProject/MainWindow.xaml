@@ -6,7 +6,35 @@
         xmlns:local="clr-namespace:C245_WpfProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!--
+    The Grid is the default layout panel for a WPF window. It allows you to arrange child
+    elements in a tabular structure of rows and columns. You can define the number of rows and
+    columns, and specify how they should size themselves relative to their content or the
+    available space.
+    -->
     <Grid>
+        <!--
+        Column and Row definitions allow you to specify how many columns and rows the Grid
+        should have, and how they should size themselves. You can use star sizing (*) to make a
+        column or row take up a proportional amount of space, or you can use absolute sizing
+        (e.g., 100) to make it a fixed size.
+        -->
+        <Grid.ColumnDefinitions>
+            <!-- The ColumnmDefinition elements define the columns of the Grid. You can specify the width of each column using star (*), "Auto", or absolute sizing.
+            -->
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- This is where "drag and drop" elements will appear, but you can also write XAML code directly here. -->
+        <Label Content="Label" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
 
     </Grid>
 </Window>
