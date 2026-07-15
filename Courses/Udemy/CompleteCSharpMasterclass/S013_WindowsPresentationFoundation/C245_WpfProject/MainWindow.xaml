@@ -12,7 +12,7 @@
     columns, and specify how they should size themselves relative to their content or the
     available space.
     -->
-    <Grid>
+    <Grid x:Name="mainWindowGrid">
         <!--
         Column and Row definitions allow you to specify how many columns and rows the Grid
         should have, and how they should size themselves. You can use star sizing (*) to make a
@@ -22,19 +22,27 @@
         <Grid.ColumnDefinitions>
             <!-- The ColumnmDefinition elements define the columns of the Grid. You can specify the width of each column using star (*), "Auto", or absolute sizing.
             -->
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition x:Name="toolbarRow" Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <!-- This is where "drag and drop" elements will appear, but you can also write XAML code directly here. -->
-        <Label Content="Label" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Label x:Name="toolbarLabel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+               Content="Toolbar" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
+        <Button x:Name="buttonA" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3"
+                Content="Say Hello" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                Click="buttonA_Click"/>
 
     </Grid>
 </Window>

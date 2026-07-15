@@ -19,6 +19,7 @@
   </Folder>
   <Folder Name="/Courses/Udemy/CompleteCSharpMasterclass/S013_WindowsPresentationFoundation/">
     <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S013_WindowsPresentationFoundation/C245_WpfProject/C245_WpfProject.csproj" Id="02f772a1-e3d0-4309-89eb-7aa39014acf1" />
+    <Project Path="Courses/Udemy/CompleteCSharpMasterclass/S013_WindowsPresentationFoundation/C247_TodoListApplication/C247_TodoListApplication.csproj" Id="a9f79935-d76b-4cd8-a652-5b658f2c5433" />
   </Folder>
   <Folder Name="/Topics/">
     <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />

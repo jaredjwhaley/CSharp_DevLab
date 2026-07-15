@@ -20,5 +20,10 @@ namespace C245_WpfProject
         {
             InitializeComponent();
         }
+
+        private void buttonA_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Hello, user!");
+        }
     }
 }
