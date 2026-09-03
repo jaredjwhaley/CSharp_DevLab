@@ -4,37 +4,55 @@ using System.Text;
 
 namespace DevLab.CSharp.Events
 {
-    // Publisher classes are responsible for defining and raising events.
-    // They contain the event declaration and the logic to raise the event when appropriate.
+    /// <summary>
+    /// Publishes messages by raising an event that subscribers can handle.
+    /// </summary>
     public class MessagePublisher
     {
-        // Publisher classes always contain an event that subscribers can subscribe to.
-        // That event (or events) is what is know as an "event handler," and it is
-        // typically of type EventHandler<TEventArgs>, where TEventArgs is a class that
-        // contains any relevant data for the event.
-        // In this case, we have a MessagePublished event that uses the MessageEventArgs class,
-        // which expects to be asigned a method that takes an object sender and a MessageEventArgs
-        // parameter.
+        /// <summary>
+        /// Occurs when a message is published.
+        /// </summary>
+        /// <remarks>
+        /// MessagePublished is the event.
+        /// EventHandler&lt;MessageEventArgs&gt; is its delegate type, which defines
+        /// the required handler signature: void (object? sender, MessageEventArgs e).
+        /// A method subscribed to the event, such as MessageSubscriber.HandleMessage,
+        /// is an event handler.
+        ///
+        /// Subscribers use += to attach handlers and -= to remove them.
+        /// Code outside this class cannot directly invoke the event.
+        /// </remarks>
         public event EventHandler<MessageEventArgs>? MessagePublished;
 
-        // Publisher classes also contain methods that raise the event when appropriate.
-        // These "Raise" or "Publish" methods normally call a protected virtual method
-        // (like OnMessagePublished) that actually raises the event.
-        // These public methods are functionally responsible for constructing the
-        // event arguments and calling the protected method to raise the event.
+        /// <summary>
+        /// Constructs the event arguments and requests that the message event be raised.
+        /// </summary>
+        /// <param name="message">The message to provide to subscribers.</param>
         public void Publish(string message)
         {
             MessageEventArgs e = new MessageEventArgs(message);
             OnMessagePublished(e);
         }
 
-        // The OnMessagePublished method is responsible for actually raising the
-        // MessagePublished event.
-        // This method is protected and virtual specifically so that the functionality
-        // of constructing the event arguments cannot change, but the logic for raising
-        // the event can be overridden by derived classes if necessary.
+        /// <summary>
+        /// Raises the MessagePublished event using the supplied event arguments.
+        /// </summary>
+        /// <param name="e">The message data to provide to subscribed handlers.</param>
+        /// <remarks>
+        /// This protected virtual method provides an extension point for derived
+        /// classes to customize event raising. An override can perform additional
+        /// work before or after calling base.OnMessagePublished(e).
+        ///
+        /// Calling the base implementation invokes the subscribed handlers.
+        /// An override that omits that call suppresses this implementation's
+        /// notification of subscribers.
+        ///
+        /// Publish constructs the arguments separately. Making this method
+        /// protected and virtual does not enforce how arguments are constructed.
+        /// </remarks>
         protected virtual void OnMessagePublished(MessageEventArgs e)
         {
+            // Invoke the subscribed handlers only when the delegate is non-null.
             MessagePublished?.Invoke(this, e);
         }
     }

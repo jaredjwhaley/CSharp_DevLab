@@ -1,0 +1,23 @@
+<UserControl x:Class="DevLab.Wpf.Tests.ResourcesAndStyles.ResourcesAndStylesView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <UserControl.Resources>
+  <SolidColorBrush x:Key="AccentBrush" Color="SteelBlue"/>
+  <!-- A keyed style is applied explicitly; an unkeyed TargetType style is implicit. -->
+  <Style x:Key="AccentButton" TargetType="Button">
+   <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+   <Setter Property="Foreground" Value="White"/>
+   <Setter Property="Padding" Value="16,8"/>
+   <Setter Property="Margin" Value="0,4"/>
+   <Style.Triggers><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></Style.Triggers>
+  </Style>
+  <Style TargetType="TextBlock"><Setter Property="Margin" Value="0,0,0,12"/></Style>
+ </UserControl.Resources>
+ <StackPanel Margin="20">
+  <TextBlock Text="A shared keyed style supplies both buttons; a trigger dims the disabled one." TextWrapping="Wrap"/>
+  <Button x:Name="EnabledExample" Content="Enabled" Style="{StaticResource AccentButton}"/>
+  <Button x:Name="DisabledExample" Content="Disabled" Style="{StaticResource AccentButton}" IsEnabled="False"/>
+  <TextBlock Text="StaticResource resolves the style. DynamicResource below can follow brush replacement." Margin="0,16,0,8" TextWrapping="Wrap"/>
+  <Border x:Name="DynamicPreview" Background="{DynamicResource AccentBrush}" Height="24"/>
+ </StackPanel>
+</UserControl>

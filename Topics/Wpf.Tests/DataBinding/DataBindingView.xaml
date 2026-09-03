@@ -1,0 +1,10 @@
+<UserControl x:Class="DevLab.Wpf.Tests.DataBinding.DataBindingView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <StackPanel Margin="20">
+  <TextBlock Text="Edit the name; the greeting updates with each keystroke." Margin="0,0,0,12"/>
+  <!-- DataContext supplies the source; Name is a source property, not a control name. -->
+  <TextBox x:Name="NameInput" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+  <TextBlock x:Name="GreetingOutput" Text="{Binding Greeting, Mode=OneWay}" FontSize="24" Margin="0,12,0,0"/>
+ </StackPanel>
+</UserControl>

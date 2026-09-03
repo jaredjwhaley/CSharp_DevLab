@@ -1,0 +1,10 @@
+<UserControl x:Class="DevLab.Wpf.Tests.Commands.CommandsView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <StackPanel Margin="20">
+  <TextBlock Text="Increment is disabled at three. Reset enables it again." Margin="0,0,0,12"/>
+  <TextBlock Text="{Binding Count}" FontSize="28"/>
+  <Button Content="Increment" Command="{Binding IncrementCommand}" Margin="0,12,0,4"/>
+  <Button Content="Reset" Command="{Binding ResetCommand}"/>
+ </StackPanel>
+</UserControl>

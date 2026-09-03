@@ -1,0 +1,22 @@
+<UserControl x:Class="DevLab.Wpf.Tests.Layout.LayoutView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <Grid x:Name="ExampleGrid" Margin="20">
+  <!-- Auto fits content; star sizing shares remaining space; pixels stay fixed. -->
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="48"/></Grid.RowDefinitions>
+  <Grid.ColumnDefinitions><ColumnDefinition Width="180"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <TextBlock Grid.ColumnSpan="2" Text="Resize the window to compare Auto, fixed, and star sizing." TextWrapping="Wrap" Margin="0,0,0,12"/>
+  <StackPanel Grid.Row="1" Margin="0,0,12,0">
+   <TextBlock Text="StackPanel" FontWeight="Bold"/>
+   <Button Content="First" Margin="0,8,0,4"/>
+   <Button Content="Second"/>
+  </StackPanel>
+  <Border Grid.Row="1" Grid.Column="1" Background="AliceBlue" Padding="12">
+   <DockPanel>
+    <TextBlock DockPanel.Dock="Top" Text="DockPanel header" FontWeight="Bold"/>
+    <TextBlock Text="The last child fills the remaining area." TextWrapping="Wrap" Margin="0,12,0,0"/>
+   </DockPanel>
+  </Border>
+  <TextBlock Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="Margin is outside; Padding is inside supporting controls."/>
+ </Grid>
+</UserControl>

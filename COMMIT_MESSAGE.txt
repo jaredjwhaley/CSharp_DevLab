@@ -1,0 +1,17 @@
+Expand C# and WPF topics with documented examples and tests
+
+- Add C# reference topics for course sections 1-12 and WPF topics for section 13.
+- Expand delegates and events with multicast behavior, subscription lifetimes,
+  exception propagation, and a deterministic temperature-monitor scenario.
+- Extend LINQ coverage across operator families, empty-input contracts,
+  join multiplicity, deferred execution, and materialization.
+- Add fixed-date age queries and an earliest-birth-date snapshot alternative.
+- Add linked READMEs throughout Topics with syntax, use cases, and best practices.
+- Extract Calculator from delegate tests and standardize XML documentation
+  across delegates, events, shared models, query classes, and test fixtures.
+- Correct stale model/event comments, remove the unused active-employee query
+  parameter, and document matching versus existence-only employee queries.
+- Add deterministic Person.GetAgeOn examples and birthday boundary tests.
+
+Validation: 142 C# tests pass. WPF examples and tests cross-compile with zero
+warnings/errors; Windows execution and visual checks remain to be performed.

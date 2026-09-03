@@ -25,5 +25,6 @@
   </Folder>
   <Folder Name="/Topics/">
     <Project Path="Topics/CSharp.Tests/CSharp.Tests.csproj" />
+    <Project Path="Topics/Wpf.Tests/Wpf.Tests.csproj" />
   </Folder>
 </Solution>

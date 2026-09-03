@@ -1,23 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DevLab.CSharp.Events
 {
+    /// <summary>
+    /// Handles published messages and stores the most recently received message.
+    /// </summary>
+    /// <remarks>
+    /// A dedicated subscriber class groups event-handling behavior with related
+    /// state. It is not required for subscription: compatible static methods,
+    /// instance methods, and lambda expressions can also handle events.
+    ///
+    /// Creating an instance does not automatically subscribe it to a publisher.
+    /// Attach <see cref="HandleMessage"/> to the publisher's event using +=,
+    /// and remove it using -= when the subscription is no longer needed.
+    /// </remarks>
     public class MessageSubscriber
     {
+        /// <summary>
+        /// Gets the most recently received message, or null if no message
+        /// has been received.
+        /// </summary>
         public string? LastMessage { get; private set; }
 
-        // Subscriber classes contain methods that match the signature of the event handler delegate.
-        // The method you will be subscribing with is the element that fulfills the contract of the
-        // event handler delegate. In this case, the event handler delegate is EventHandler<MessageEventArgs>,
-        // which means that the method must have a void return type and accept two parameters: an
-        // object sender and a MessageEventArgs e.
-        //
-        // NOTE: You do not techincally need a "Subscriber" class to subscribe to an event.
-        // You can subscribe with any method that matches the signature of the event handler delegate,
-        // including static methods. However, it is common practice to create a subscriber class to encapsulate
-        // the logic for handling the event and to maintain state related to the event handling.
+        /// <summary>
+        /// Handles a published message by storing it in <see cref="LastMessage"/>.
+        /// </summary>
+        /// <param name="sender">
+        /// The source of the event. <see cref="MessagePublisher"/> supplies itself
+        /// as the sender when raising its event.
+        /// </param>
+        /// <param name="e">The event data containing the published message.</param>
+        /// <remarks>
+        /// This handler matches the signature defined by
+        /// <see cref="EventHandler{TEventArgs}"/> when its type argument is
+        /// <see cref="MessageEventArgs"/>: a void return type, an object sender,
+        /// and a MessageEventArgs parameter.
+        ///
+        /// The method is virtual so derived classes can customize its behavior.
+        /// An override can call base.HandleMessage(sender, e) to retain the
+        /// behavior that updates LastMessage.
+        /// </remarks>
         public virtual void HandleMessage(object? sender, MessageEventArgs e)
         {
             LastMessage = e.Message;

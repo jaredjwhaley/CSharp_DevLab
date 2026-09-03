@@ -1,23 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DevLab.CSharp.Events
 {
-    // EventArgs classes are the data containers for events.
-    // They are used to pass any relevant information from the publisher to the
-    // subscriber when an event is raised.
+    /// <summary>
+    /// Contains the message data passed from a publisher to its event subscribers.
+    /// </summary>
+    /// <remarks>
+    /// Event-data classes conventionally inherit from <see cref="EventArgs"/>.
+    /// They expose the information subscribers need when handling an event.
+    /// This example contains a single message, but other events may require
+    /// several properties.
+    /// </remarks>
     public class MessageEventArgs : EventArgs
     {
-        // EventArgs classes are used to encapsulate any relevant data for an event.
-        // They typically inherit from the EventArgs class, which is a base class
-        // provided by .NET for event data.
-        //
-        // You will normally see multiple properties in an EventArgs class, but for this
-        // example we only have one property, Message, which is a string that contains
-        // the message being published.
+        /// <summary>
+        /// Gets the message associated with the event.
+        /// </summary>
+        /// <remarks>
+        /// The value is assigned during construction and cannot subsequently
+        /// be changed through this property.
+        /// </remarks>
         public string Message { get; }
 
+        /// <summary>
+        /// Initializes the event data with the specified message.
+        /// </summary>
+        /// <param name="message">The message to provide to subscribers.</param>
         public MessageEventArgs(string message)
         {
             Message = message;
