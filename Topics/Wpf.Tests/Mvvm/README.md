@@ -5,10 +5,26 @@ Model–View–ViewModel separates data, presentation state, and markup. The vie
 ## Syntax
 
 ```xml
-<ListBox ItemsSource="{Binding Tasks}"
-         SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
-         DisplayMemberPath="Title" />
-<Button Content="Add" Command="{Binding AddCommand}" />
+<!-- Inside MvvmView, DataContext is a TaskListViewModel.
+     The view describes bindings; the view model owns task-list operations. -->
+<StackPanel>
+  <!-- Each text edit updates Draft. The view model uses Draft to decide whether
+       AddCommand can execute; blank or whitespace input is not eligible. -->
+  <TextBox Text="{Binding Draft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+  <Button Content="Add" Command="{Binding AddCommand}" />
+
+  <!-- ItemsSource supplies the sequence of TaskItem objects to display.
+       DisplayMemberPath reads Title from EACH item, not from the view model.
+       TwoWay SelectedItem keeps the UI selection and SelectedTask synchronized. -->
+  <ListBox ItemsSource="{Binding Tasks}"
+           SelectedItem="{Binding SelectedTask, Mode=TwoWay}"
+           DisplayMemberPath="Title" />
+
+  <!-- RemoveCommand is available only when SelectedTask belongs to Tasks. -->
+  <Button Content="Remove selected" Command="{Binding RemoveCommand}" />
+</StackPanel>
+<!-- Add appends a trimmed title and clears Draft. Collection notifications refresh
+     the list; property notifications refresh scalar values such as Draft. -->
 ```
 
 ## Implementation

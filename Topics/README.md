@@ -37,12 +37,14 @@ Each source directory has a README. Concept READMEs explain what the feature doe
 From the repository root with .NET 10 SDK:
 
 ```shell
+# Restore dependencies, build, and run this project's tests from the repository root.
 dotnet test Topics/CSharp.Tests/CSharp.Tests.csproj
 ```
 
 On Windows with desktop support:
 
 ```shell
+# Build and run the WPF tests; this command requires Windows.
 dotnet test Topics/Wpf.Tests/Wpf.Tests.csproj
 ```
 

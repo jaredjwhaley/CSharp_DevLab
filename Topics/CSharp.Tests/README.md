@@ -5,11 +5,13 @@ This .NET 10 xUnit project is a language reference made of executable examples. 
 From the repository root:
 
 ```shell
+# Restore dependencies, build, and run this project's tests from the repository root.
 dotnet test Topics/CSharp.Tests/CSharp.Tests.csproj
+# Run only tests whose fully qualified name contains LinqTests (~ means contains).
 dotnet test Topics/CSharp.Tests/CSharp.Tests.csproj --filter FullyQualifiedName~LinqTests
 ```
 
-Read a concept README for purpose, syntax, implementation, use cases, and best practices. Then read and run its tests. Every example owns its state, avoids interactive input, and asserts its result. XML summaries describe declarations; ordinary inline comments explain implementation choices. Tests deliberately demonstrating compiler warnings suppress only the specific warning at that example.
+Read a concept README for purpose, syntax, implementation, use cases, and best practices. Syntax examples annotate the unfamiliar notation and show expected values. Most statements belong inside a method; snippets containing type declarations or class members explicitly identify their placement. These are focused reference snippets, not entire source files. Then read and run its tests. Every example owns its state, avoids interactive input, and asserts its result. XML summaries describe declarations; ordinary inline comments explain implementation choices. Tests deliberately demonstrating compiler warnings suppress only the specific warning at that example.
 
 | Folder | Purpose |
 | --- | --- |

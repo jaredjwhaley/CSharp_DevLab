@@ -13,6 +13,7 @@ This Windows-targeted xUnit project contains both executable tests and the examp
 Run from the repository root on Windows with .NET 10 SDK and desktop support:
 
 ```shell
+# Build and run the WPF tests; this command requires Windows.
 dotnet test Topics/Wpf.Tests/Wpf.Tests.csproj
 ```
 

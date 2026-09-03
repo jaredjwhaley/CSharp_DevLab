@@ -5,8 +5,25 @@ A string is an immutable sequence of UTF-16 code units. Text operations return n
 ## Syntax
 
 ```csharp
-var greeting = $"Hello, {name}";
-bool same = string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+string name = "Ada";
+// $ enables interpolation: expressions inside braces become part of the text.
+string greeting = $"Hello, {name}"; // "Hello, Ada"
+
+// A regular string uses escape sequences: \n is a newline; \\ is a backslash.
+string path = "C:\\temp";
+string verbatimPath = @"C:\temp"; // @ preserves backslashes literally.
+
+// Strings are immutable: Replace returns a value; it does not edit greeting.
+string changed = greeting.Replace("Ada", "Grace"); // "Hello, Grace"
+// greeting still contains "Hello, Ada".
+
+// Choose the comparison rule explicitly for programmatic identifiers.
+bool same = string.Equals("FILE", "file", StringComparison.OrdinalIgnoreCase);
+// same is true; letter case is ignored without using language-specific sorting.
+
+// F2 requests two decimal places; invariant culture supplies a stable decimal dot.
+string price = 12.5m.ToString("F2", System.Globalization.CultureInfo.InvariantCulture);
+// price is "12.50".
 ```
 
 ## How the examples work

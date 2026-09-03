@@ -5,8 +5,22 @@ Disposal releases resources at a known point. Garbage collection manages memory 
 ## Syntax
 
 ```csharp
-using (var stream = new MemoryStream()) { /* use stream */ }
-using var reader = new StringReader("text");
+// A using statement disposes the resource when its block ends, even if code throws.
+// IDisposable.Dispose is cleanup; it is separate from garbage collection.
+using (var stream = new MemoryStream())
+{
+    stream.WriteByte(42);
+} // stream is disposed here.
+
+// A using declaration lasts until the end of its ENCLOSING scope.
+using var reader = new StringReader("first\nsecond");
+string? first = reader.ReadLine(); // "first"
+string? second = reader.ReadLine(); // "second"
+// reader remains usable through the rest of this method/block, not just this line.
+// It is disposed automatically when that scope exits.
+
+// Do not return a resource owned by a using declaration: the caller would receive
+// an already-disposed object. Decide explicitly who owns and disposes a resource.
 ```
 
 ## How the examples work

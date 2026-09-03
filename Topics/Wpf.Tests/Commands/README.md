@@ -5,7 +5,22 @@ A command separates a user action from the control that triggers it. ICommand ex
 ## Syntax
 
 ```xml
-<Button Content="Increment" Command="{Binding IncrementCommand}" />
+<!-- Inside CommandsView, DataContext is a CounterViewModel. -->
+<StackPanel>
+  <!-- Binding reads the current Count and refreshes when it is reported changed. -->
+  <TextBlock Text="{Binding Count}" />
+
+  <!-- Command binds to an ICommand object, not a Click handler method.
+       WPF calls CanExecute to determine availability and Execute when activated.
+       Here, IncrementCommand.CanExecute is false when Count reaches three. -->
+  <Button Content="Increment" Command="{Binding IncrementCommand}" />
+
+  <!-- The same mechanism enables Reset only while Count is nonzero.
+       CanExecuteChanged tells WPF to check availability again after state changes. -->
+  <Button Content="Reset" Command="{Binding ResetCommand}" />
+</StackPanel>
+<!-- Result: increment 0 -> 1 -> 2 -> 3, then Increment is disabled.
+     Reset returns to zero and enables Increment again. -->
 ```
 
 ## Implementation

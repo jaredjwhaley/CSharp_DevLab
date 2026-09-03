@@ -5,6 +5,7 @@ All executable test classes are stored here and use the namespace `DevLab.Wpf.Te
 Run from the repository root:
 
 ```shell
+# Build and run the WPF tests; this command requires Windows.
 dotnet test Topics/Wpf.Tests/Wpf.Tests.csproj
 ```
 

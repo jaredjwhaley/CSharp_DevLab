@@ -5,8 +5,24 @@ Classes describe reference-type objects that combine state and behavior. A const
 ## Syntax
 
 ```csharp
-var counter = new Counter(2);
-counter.Increment();
+// Class declarations belong at namespace scope (or inside another type).
+class Counter
+{
+    // private set allows callers to read Value, but only Counter can assign it.
+    public int Value { get; private set; }
+
+    // A constructor has the class name and no return type. It establishes state.
+    public Counter(int initial) => Value = initial;
+
+    // An instance method operates on the particular object receiving the call.
+    public void Increment() => Value++;
+}
+
+// Inside a method, create and use an instance:
+// var counter = new Counter(2); // new constructs an object; initial receives 2.
+// counter.Increment();          // Value becomes 3 on this object.
+// var alias = counter;          // Copies the reference, not the Counter object.
+// alias.Increment();            // counter.Value and alias.Value are now both 4.
 ```
 
 ## How the examples work

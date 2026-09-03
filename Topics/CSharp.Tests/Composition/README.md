@@ -5,8 +5,28 @@ Composition builds an object from collaborators: it has a dependency instead of 
 ## Syntax
 
 ```csharp
-var report = new Report(new UpperFormatter());
-string result = report.Render("hello");
+// The Report class owns a reference to a collaborator rather than inheriting it.
+// These declarations are placed at namespace scope.
+interface IFormatter { string Format(string value); }
+class UpperFormatter : IFormatter
+{
+    public string Format(string value) => value.ToUpperInvariant();
+}
+class Report
+{
+    private readonly IFormatter _formatter;
+    public Report(IFormatter formatter)
+    {
+        ArgumentNullException.ThrowIfNull(formatter); // A collaborator is required.
+        _formatter = formatter; // Store the supplied implementation for later use.
+    }
+    public string Render(string text) => _formatter.Format(text); // Delegate work.
+}
+
+// Caller code supplies the collaborator through the constructor:
+// var report = new Report(new UpperFormatter());
+// string result = report.Render("hello"); // "HELLO"
+// Passing a different formatter changes formatting without modifying Report.
 ```
 
 ## How the examples work

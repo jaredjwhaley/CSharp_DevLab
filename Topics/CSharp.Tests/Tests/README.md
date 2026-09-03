@@ -5,6 +5,7 @@ All executable test classes are stored here and use the namespace `DevLab.CSharp
 Run from the repository root:
 
 ```shell
+# Restore dependencies, build, and run this project's tests from the repository root.
 dotnet test Topics/CSharp.Tests/CSharp.Tests.csproj
 ```
 

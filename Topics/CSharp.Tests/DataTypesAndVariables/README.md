@@ -5,9 +5,24 @@ Types describe which values a variable can hold and which operations are legal. 
 ## Syntax
 
 ```csharp
-int count = 3;
-var name = "Ada"; // Still statically typed as string.
+// The type before the name determines the values and operations allowed.
+int count = 3;           // Whole number.
+bool isReady = true;    // Boolean: true or false.
+string name = "Ada";    // Text; double quotes delimit a string literal.
+
+// var asks the compiler to infer the type from the initializer.
+// inferredCount is still an int; it cannot later hold a string.
+var inferredCount = 3;
+inferredCount += 2; // Now 5; += adds to the existing value.
+
+// const requires a compile-time value and prevents later reassignment.
+// The m suffix makes 0.05 a decimal literal rather than a double literal.
 const decimal taxRate = 0.05m;
+decimal tax = 100m * taxRate; // 5m
+
+// default(T) produces the default value of a type.
+int zero = default(int);       // 0
+string? missing = default;    // null; string? permits a missing reference.
 ```
 
 ## How the examples work

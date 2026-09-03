@@ -6,11 +6,31 @@ Language Integrated Query describes how to select, transform, combine, and summa
 
 ```csharp
 int[] numbers = [1, 2, 3, 4];
+// Each lambda names its current input n. Where keeps matches; Select transforms
+// each surviving value. This builds a deferred query, not an immediate result array.
 var methods = numbers.Where(n => n % 2 == 0).Select(n => n * 10);
+
+// Query syntax expresses the same operations. 'from' introduces the input name,
+// 'where' filters it, and 'select' describes each output value.
 var query = from n in numbers
             where n % 2 == 0
             select n * 10;
-int[] snapshot = methods.ToArray(); // [20, 40]
+
+// ToArray enumerates NOW and stores results. Both forms produce [20, 40].
+int[] snapshot = methods.ToArray();
+
+// OrderBy establishes a primary order. ThenBy adds a tie-breaker, not a replacement.
+string[] words = ["bee", "ant", "a"];
+var ordered = words.OrderBy(w => w.Length).ThenBy(w => w, StringComparer.Ordinal);
+// Enumerating ordered yields "a", "ant", "bee".
+
+// GroupBy returns groups; each group has a Key and can itself be enumerated.
+var groups = words.GroupBy(w => w.Length); // Keys 3 and 1, in first-seen key order.
+
+// Scalar operators run immediately. Any answers existence; Sum combines values.
+bool hasEven = numbers.Any(n => n % 2 == 0); // true
+int total = numbers.Sum(); // 10
+// Re-enumerating a deferred query repeats its work and can observe changed data.
 ```
 
 Query syntax is translated into method calls. Both forms compose operators; some operations, including `Any` and `ToArray`, require method syntax. Read [Lambdas and closures](../LambdasAndClosures/README.md) for predicates/selectors and [Enumeration](../Enumeration/README.md) for consumption.

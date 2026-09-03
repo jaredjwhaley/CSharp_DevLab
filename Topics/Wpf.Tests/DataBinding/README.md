@@ -5,8 +5,22 @@ Data binding connects a control property to a source property so the view can fo
 ## Syntax
 
 ```xml
-<TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-<TextBlock Text="{Binding Greeting, Mode=OneWay}" />
+<!-- Place these controls in a panel inside DataBindingView.
+     Its DataContext is a PersonViewModel, inherited by these child controls. -->
+<StackPanel>
+  <!-- {Binding Name} reads the Name property on the current DataContext.
+       TwoWay allows values to flow from model to control AND control to model.
+       PropertyChanged sends edits to the model as Text changes, instead of waiting
+       for TextBox's usual LostFocus source-update trigger. -->
+  <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+  <!-- OneWay displays Greeting without trying to write changes back to the model.
+       PersonViewModel raises PropertyChanged for Greeting whenever Name changes,
+       telling this binding to read the computed greeting again. -->
+  <TextBlock Text="{Binding Greeting, Mode=OneWay}" />
+</StackPanel>
+<!-- Initial result: input displays Ada; output displays Hello, Ada!
+     Typing Grace updates Name and then the displayed greeting. -->
 ```
 
 ## Implementation

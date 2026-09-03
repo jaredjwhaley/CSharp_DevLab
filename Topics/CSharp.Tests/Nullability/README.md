@@ -5,9 +5,22 @@ Null represents a missing reference or an absent nullable value. Nullable annota
 ## Syntax
 
 ```csharp
+// ? after a reference type marks a value that may be null.
 string? name = null;
-int length = name?.Length ?? 0;
+
+// ?. accesses Length only when name is nonnull; otherwise it produces null.
+// ?? uses the value on its right only when the left-hand value is null.
+int length = name?.Length ?? 0; // 0, without dereferencing a missing string.
+
+// ??= assigns a fallback only when the variable currently contains null.
+name ??= "Ada"; // name is now "Ada".
+
+// int? is Nullable<int>: an integer value OR an absent value.
 int? count = null;
+bool supplied = count.HasValue; // false
+int fallback = count.GetValueOrDefault(); // 0; count itself remains null.
+// count.Value would throw here. The ! operator only suppresses compiler
+// warnings; it does not make a missing value safe to access at runtime.
 ```
 
 ## How the examples work

@@ -5,9 +5,22 @@ Dictionary<TKey,TValue> maps unique keys to values using equality and hashing.
 ## Syntax
 
 ```csharp
+// <string, int> means string keys and integer values.
+// This comparer treats "Ada" and "ADA" as the same key.
 var counts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
-counts["Ada"] = 1;
-bool found = counts.TryGetValue("ADA", out int count);
+counts["Ada"] = 1; // The indexer adds this key if absent, or replaces its value.
+counts["ADA"] = 2; // Updates the same entry; Count is still 1.
+
+// TryGetValue returns whether the key exists; out receives the associated value.
+bool found = counts.TryGetValue("ada", out int count); // true; count is 2.
+bool missing = counts.TryGetValue("Bob", out int absent); // false; absent is 0.
+
+// Add requires a new key. Calling counts.Add("Ada", 3) would throw.
+// TryAdd instead reports a duplicate through its Boolean return value.
+bool added = counts.TryAdd("Ada", 3); // false; the existing value stays 2.
+
+// An indexer read like counts["Bob"] throws for a missing key.
+// Prefer TryGetValue when absence is an ordinary outcome.
 ```
 
 ## How the examples work

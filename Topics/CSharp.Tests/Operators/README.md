@@ -5,9 +5,23 @@ Operators combine, compare, assign, or transform values. Operand types determine
 ## Syntax
 
 ```csharp
-int quotient = 7 / 2;
-bool eligible = age >= 18 && hasTicket;
-string label = eligible ? "Enter" : "Wait";
+// Integer operands produce integer division; the fractional part is discarded.
+int quotient = 7 / 2;      // 3
+int remainder = 7 % 2;     // 1; % is the remainder operator.
+double precise = 7 / 2.0;  // 3.5; 2.0 makes this floating-point division.
+
+int age = 20;
+bool hasTicket = true;
+// >= compares values; && requires both conditions to be true.
+// && skips its right operand when its left operand is false.
+bool eligible = age >= 18 && hasTicket; // true
+
+// condition ? whenTrue : whenFalse selects one value.
+string label = eligible ? "Enter" : "Wait"; // "Enter"
+
+int total = 2 + 3 * 4;      // 14: multiplication happens before addition.
+int grouped = (2 + 3) * 4;  // 20: parentheses change the evaluation grouping.
+total += 1;                // Same assignment effect here as total = total + 1.
 ```
 
 ## How the examples work

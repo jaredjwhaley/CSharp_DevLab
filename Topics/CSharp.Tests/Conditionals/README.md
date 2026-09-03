@@ -5,8 +5,29 @@ Conditionals choose a path based on a Boolean expression or a matched pattern.
 ## Syntax
 
 ```csharp
-if (score >= 60) return "Pass";
-return value switch { null => "Missing", int n when n > 0 => "Positive", _ => "Other" };
+int score = 75;
+// if runs its block only when the condition is true; else handles the other case.
+if (score >= 60)
+    Console.WriteLine("Pass"); // This branch runs.
+else
+    Console.WriteLine("Fail");
+
+// ?: chooses a value when a full statement block is unnecessary.
+string grade = score >= 60 ? "Pass" : "Fail"; // "Pass"
+
+object? value = 3;
+// A switch expression selects the first matching arm and returns its value.
+// 'int n' matches an integer and names it n; 'when' adds a further condition.
+// _ is a discard pattern: it matches anything not handled earlier.
+string description = value switch
+{
+    null => "Missing",
+    int n when n > 0 => "Positive integer",
+    _ => "Other"
+}; // "Positive integer"
+
+// 'is' can test relational patterns; 'and' requires both patterns to match.
+bool passingScore = score is >= 60 and <= 100; // true
 ```
 
 ## How the examples work

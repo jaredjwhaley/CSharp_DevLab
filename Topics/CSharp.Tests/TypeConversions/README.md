@@ -5,9 +5,22 @@ Conversions translate values between types; parsing interprets text as a value.
 ## Syntax
 
 ```csharp
-long wide = 42;
-int narrow = checked((int)wide);
-bool valid = int.TryParse("42", out int parsed);
+int count = 42;
+long wide = count; // Implicit conversion: every int value fits in a long.
+
+// (int) explicitly requests conversion. checked throws OverflowException
+// if the value is outside int's range instead of allowing wraparound.
+int narrow = checked((int)wide); // 42
+int truncated = (int)3.9;       // 3: a cast discards the fraction toward zero.
+
+// Parsing interprets text; casting does not turn a string into a number.
+// out declares a variable that receives the parsed result.
+bool valid = int.TryParse("42", out int parsed); // true; parsed is 42
+bool invalid = int.TryParse("forty-two", out int failed); // false; failed is 0
+
+// Boxing stores a value in an object. Unboxing must use its original type.
+object boxed = count;
+int unboxed = (int)boxed; // 42; (long)boxed would throw InvalidCastException.
 ```
 
 ## How the examples work

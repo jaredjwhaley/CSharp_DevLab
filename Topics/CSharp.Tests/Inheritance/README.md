@@ -5,10 +5,27 @@ Inheritance specializes a base class. Constructors initialize the base part, and
 ## Syntax
 
 ```csharp
-class Dog(string name) : Animal(name)
+// Type declarations go at namespace scope. abstract prevents direct construction
+// and can require derived types to supply missing behavior.
+abstract class Animal
 {
-    public override string Speak() => "Woof";
+    public string Name { get; }
+    protected Animal(string name) => Name = name;
+    public abstract string Speak(); // No body: derived types must implement it.
 }
+
+// ':' declares inheritance; sealed prevents another type from deriving from Dog.
+sealed class Dog : Animal
+{
+    // base(name) calls the base constructor before this constructor's body.
+    public Dog(string name) : base(name) { }
+    public override string Speak() => "Woof"; // Fills the inherited abstract slot.
+}
+
+// Caller code can refer to a Dog through its Animal contract:
+// Animal pet = new Dog("Rex");
+// string sound = pet.Speak(); // "Woof": override dispatch follows the real object.
+// 'new' on a member would HIDE a name instead of overriding its virtual slot.
 ```
 
 ## How the examples work

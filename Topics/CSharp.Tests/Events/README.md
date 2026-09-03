@@ -21,12 +21,19 @@ Events do **not** automatically introduce concurrency. Normal .NET event invocat
 The delegate is required because the compiler needs to know which methods can be subscribed. The `event` keyword restricts what outside code can do with that delegate: consumers can use `+=` and `-=`, but cannot invoke the event or replace its invocation list. Read [Delegates](../Delegates/README.md) first if method groups and signatures are unfamiliar; [Lambdas and closures](../LambdasAndClosures/README.md) explains inline handlers.
 
 ```csharp
+// Create a publisher whose initial temperature is 20 degrees Celsius.
 var sensor = new TemperatureMonitor(20m);
+
+// EventHandler<T> defines a void handler with sender and event-data parameters.
+// The lambda prints the immutable old/new readings carried by the notification.
 EventHandler<TemperatureChangedEventArgs> log = (sender, e) =>
     Console.WriteLine($"{e.OldTemperature} -> {e.NewTemperature}");
-sensor.TemperatureChanged += log;
-sensor.Temperature = 25m;
-sensor.TemperatureChanged -= log;
+
+sensor.TemperatureChanged += log; // Subscribe: add this handler to the event.
+sensor.Temperature = 25m;         // Changes state and invokes log synchronously.
+sensor.TemperatureChanged -= log; // Unsubscribe using the same saved delegate.
+sensor.Temperature = 26m;         // log is no longer called.
+// Outside code cannot invoke or replace the event: the publisher controls raising.
 ```
 
 The publisher uses `TemperatureChanged?.Invoke(this, e)`. The null-conditional call makes an absent subscriber list safe. This does not make the publisher or subscriber state thread-safe.
@@ -40,11 +47,17 @@ The publisher uses `TemperatureChanged?.Invoke(this, e)`. The null-conditional c
 
 ```csharp
 var sensor = new TemperatureMonitor(20m);
-var ac = new AirConditioner();
+var ac = new AirConditioner(); // Starts with cooling off.
+
+// The thermostat subscribes internally. using var calls Dispose at scope exit,
+// removing its handler so the sensor no longer retains this subscriber.
 using var thermostat = new Thermostat(sensor, 20m, 24m, new[] { ac });
-sensor.Temperature = 24m; // Cooling on.
-sensor.Temperature = 22m; // Still on inside the band.
-sensor.Temperature = 20m; // Cooling off.
+
+sensor.Temperature = 24m; // Reaches upper threshold: cooling turns on.
+sensor.Temperature = 22m; // Inside the band: cooling stays on (hysteresis).
+sensor.Temperature = 20m; // Reaches lower threshold: cooling turns off.
+// These are ordinary synchronous property assignments, with event notifications
+// connecting the sensor to its subscriber. No background thread is implied.
 ```
 
 This extracts the event-driven portion of the [course temperature monitor](../../../Courses/Udemy/CompleteCSharpMasterclass/S011_EventsAndDelegates/C231_TemperatureMonitor/TemperatureMonitor.cs). The course also contains room physics and unit conversions. The topic intentionally uses decimal Celsius readings and direct assignments to make behavior deterministic. It corrects the course monitor's notification-before-assignment order and introduces hysteresis as an explicitly documented topic behavior. Course files remain unchanged.

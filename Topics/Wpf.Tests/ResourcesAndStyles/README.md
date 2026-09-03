@@ -5,10 +5,32 @@ Resources give reusable values names; styles apply shared property values and st
 ## Syntax
 
 ```xml
-<SolidColorBrush x:Key="AccentBrush" Color="SteelBlue" />
-<Style x:Key="AccentButton" TargetType="Button">
-  <Setter Property="Background" Value="{StaticResource AccentBrush}" />
-</Style>
+<!-- Resource declarations belong inside a resource dictionary, such as
+     UserControl.Resources. x:Key gives an object its resource-lookup name. -->
+<UserControl.Resources>
+  <SolidColorBrush x:Key="AccentBrush" Color="SteelBlue" />
+  <Style x:Key="AccentButton" TargetType="Button">
+    <!-- Setter supplies a property value to controls using this style.
+         StaticResource looks up the shared brush instead of creating another one. -->
+    <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+    <Setter Property="Padding" Value="16,8" /> <!-- Horizontal, vertical padding. -->
+    <Style.Triggers>
+      <!-- Apply this setter only while the styled button is disabled. -->
+      <Trigger Property="IsEnabled" Value="False">
+        <Setter Property="Opacity" Value="0.45" />
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</UserControl.Resources>
+
+<!-- In the same view's content: Style explicitly selects the keyed style. -->
+<StackPanel>
+  <Button Content="Enabled" Style="{StaticResource AccentButton}" />
+  <Button Content="Disabled" Style="{StaticResource AccentButton}" IsEnabled="False" />
+  <!-- DynamicResource can resolve again if the brush resource entry is replaced.
+       StaticResource keeps the object that was resolved when its value loaded. -->
+  <Border Height="24" Background="{DynamicResource AccentBrush}" />
+</StackPanel>
 ```
 
 ## Implementation

@@ -5,9 +5,24 @@ A lambda is an inline function. A closure retains access to captured variables a
 ## Syntax
 
 ```csharp
-Func<int, int> square = x => x * x;
+// => separates a lambda's input parameters from its body.
+// Func<int, int> takes an int and returns an int; the last type is the result type.
+Func<int, int> square = static x => x * x;
+int result = square(4); // 16. static prevents this lambda from capturing locals.
+
 int offset = 2;
+// This lambda captures the VARIABLE offset, not a frozen copy of its current value.
 Func<int, int> addOffset = x => x + offset;
+offset = 10;
+int shifted = addOffset(3); // 13, because offset is read when the lambda runs.
+
+// Use a block body for multiple statements. Action returns void, so no return value.
+Action<string> display = message =>
+{
+    string trimmed = message.Trim();
+    Console.WriteLine(trimmed);
+};
+display(" Ada "); // Prints "Ada".
 ```
 
 ## How the examples work

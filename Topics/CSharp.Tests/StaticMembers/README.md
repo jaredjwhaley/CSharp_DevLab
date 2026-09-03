@@ -5,8 +5,23 @@ Static members belong to a type rather than a particular instance.
 ## Syntax
 
 ```csharp
-public static int Square(int value) => value * value;
-public const int DaysPerWeek = 7;
+// Declare this type at namespace scope. A static class cannot be instantiated.
+static class MathExample
+{
+    // static associates the method with the type, not an individual object.
+    public static int Square(int value) => value * value;
+
+    // const is a compile-time constant; it is implicitly static.
+    public const int DaysPerWeek = 7;
+
+    // static readonly allows runtime initialization, then prevents reassignment.
+    // This DateOnly value is shared through the type.
+    public static readonly DateOnly Epoch = new(2020, 1, 1);
+}
+
+// Caller code names the type directly; no new MathExample() is involved:
+// int result = MathExample.Square(4); // 16
+// int days = MathExample.DaysPerWeek; // 7
 ```
 
 ## How the examples work

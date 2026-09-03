@@ -5,8 +5,27 @@ Encapsulation keeps an object responsible for maintaining its own valid state. P
 ## Syntax
 
 ```csharp
+// These declarations go inside an Account class.
+// get reads the value. private set restricts assignment to Account's own code.
 public decimal Balance { get; private set; }
+
+// init allows assignment during initialization but not normal later assignment.
 public string Name { get; init; } = "Unnamed";
+
+// An expression-bodied getter calculates a value instead of storing another flag.
+public bool IsEmpty => Balance == 0;
+
+// A method centralizes validation before changing the protected state.
+public void Deposit(decimal amount)
+{
+    if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount));
+    Balance += amount;
+}
+
+// Caller code uses an object initializer for Name, then a method for changes:
+// var account = new Account { Name = "Savings" };
+// account.Deposit(25m); // Balance becomes 25; IsEmpty becomes false.
+// account.Balance = -1; // Does not compile: the setter is private.
 ```
 
 ## How the examples work

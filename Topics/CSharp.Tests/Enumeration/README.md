@@ -5,8 +5,24 @@ Enumeration provides sequential access through IEnumerable<T> and IEnumerator<T>
 ## Syntax
 
 ```csharp
-IEnumerable<int> Numbers() { yield return 1; yield return 2; }
-foreach (int value in Numbers()) { /* consume */ }
+// IEnumerable<int> promises sequential access to integers, not a stored list.
+IEnumerable<int> Numbers()
+{
+    // yield return emits one value and pauses until the consumer requests another.
+    yield return 10;
+    yield return 20;
+}
+
+var sequence = Numbers(); // Creates an enumerable; the iterator body has not run.
+foreach (int number in sequence)
+    Console.WriteLine(number); // Requests values and prints 10, then 20.
+
+// This is the lower-level mechanism used by foreach for this kind of sequence.
+// MoveNext advances and returns false at the end; Current reads the current item.
+using var iterator = sequence.GetEnumerator();
+while (iterator.MoveNext())
+    Console.WriteLine(iterator.Current);
+// using disposes the enumerator at scope exit, including on an exception.
 ```
 
 ## How the examples work

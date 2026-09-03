@@ -5,10 +5,29 @@ Loops repeat a block until a condition or sequence is exhausted.
 ## Syntax
 
 ```csharp
-for (int i = 0; i < items.Length; i++) { /* index available */ }
-foreach (var item in items) { /* each value */ }
-while (ready) { /* condition first */ }
-do { /* at least once */ } while (ready);
+int[] items = [10, 20, 30];
+// for has three parts: initialize once; test before each pass; update afterward.
+for (int i = 0; i < items.Length; i++)
+    Console.WriteLine(items[i]); // Prints 10, 20, 30; i is the current index.
+
+// foreach gets each value directly when an index is not needed.
+foreach (int item in items)
+    Console.WriteLine(item); // Also prints 10, 20, 30.
+
+int remaining = 2;
+// while checks first, so its body may never run. Decrement makes progress.
+while (remaining > 0)
+    remaining--; // Runs twice; remaining becomes 0.
+
+// do checks AFTER the body, so it always runs at least once.
+do { remaining++; } while (remaining < 1); // Runs once; remaining becomes 1.
+
+for (int i = 1; i <= 6; i++)
+{
+    if (i == 5) break;         // End the nearest loop entirely.
+    if (i % 2 == 0) continue;  // Skip the rest of this iteration for even values.
+    Console.WriteLine(i);      // Prints only 1 and 3.
+}
 ```
 
 ## How the examples work

@@ -5,11 +5,27 @@ Layout arranges controls within available space. WPF measures desired sizes and 
 ## Syntax
 
 ```xml
-<Grid>
+<!-- Inside a WPF view, Grid arranges children into rows and columns.
+     Unassigned Grid.Row and Grid.Column values default to zero. -->
+<Grid Margin="12">
+  <!-- Margin reserves space OUTSIDE this Grid, between it and its parent. -->
+  <Grid.RowDefinitions>
+    <RowDefinition Height="Auto" /> <!-- Fit this row to its content. -->
+    <RowDefinition Height="*" />    <!-- Give this row the remaining height. -->
+  </Grid.RowDefinitions>
   <Grid.ColumnDefinitions>
-    <ColumnDefinition Width="180" />
-    <ColumnDefinition Width="*" />
+    <ColumnDefinition Width="180" /> <!-- Fixed device-independent units. -->
+    <ColumnDefinition Width="*" />   <!-- Remaining width; not a fixed size. -->
   </Grid.ColumnDefinitions>
+
+  <!-- Grid.ColumnSpan is an attached property: Grid interprets it when arranging
+       this child. Spanning two columns makes this heading cover the full width. -->
+  <TextBlock Grid.ColumnSpan="2" Text="Heading" />
+  <Button Grid.Row="1" Grid.Column="0" Content="Sidebar" />
+  <Border Grid.Row="1" Grid.Column="1" Padding="12" Background="AliceBlue">
+    <!-- Padding reserves space INSIDE this Border, around its child. -->
+    <TextBlock Text="Flexible content area" />
+  </Border>
 </Grid>
 ```
 

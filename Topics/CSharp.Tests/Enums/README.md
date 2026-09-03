@@ -5,8 +5,23 @@ Enums give names to integral values. Flags enums represent combinations of indep
 ## Syntax
 
 ```csharp
+// Declarations go at namespace scope. An enum names integral values.
 enum Status { Unknown = 0, Ready = 1 }
-[Flags] enum Access { None = 0, Read = 1, Write = 2 }
+
+// [Flags] indicates that values are intended to be combined as independent bits.
+// Assign powers of two to the individual options: 1 = 01, 2 = 10 in binary.
+[Flags]
+enum Access { None = 0, Read = 1, Write = 2 }
+
+// Caller code:
+// Access allowed = Access.Read | Access.Write; // Bitwise OR combines bits: 3.
+// bool canRead = (allowed & Access.Read) != 0; // AND tests the Read bit: true.
+// allowed &= ~Access.Write; // Complement Write's bits, then AND: only Read remains.
+
+// Numeric casts can create unnamed values; the enum does not prevent this.
+// Status unexpected = (Status)99;
+// bool defined = Enum.IsDefined(unexpected); // false.
+// TryParse can also accept numeric strings; parsing alone is not validation.
 ```
 
 ## How the examples work

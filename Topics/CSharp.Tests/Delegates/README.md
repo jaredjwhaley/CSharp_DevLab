@@ -5,10 +5,25 @@ A delegate is a strongly typed reference to callable behavior. Its signature spe
 ## Syntax and implementation
 
 ```csharp
+// Func lists input types first and its result type last: two ints in, one int out.
+// The lambda supplies the implementation for that signature.
 Func<int, int, int> add = (left, right) => left + right;
-int result = add(2, 3);
+int result = add(2, 3); // Parentheses invoke the stored behavior; result is 5.
+
+// A method group supplies an existing method WITHOUT invoking it immediately.
+// Action<string> accepts one string and returns void.
 Action<string> display = Console.WriteLine;
+display("Ada"); // Now Console.WriteLine is called with "Ada".
+
+// Predicate<T> accepts T and returns bool.
 Predicate<int> positive = value => value > 0;
+bool accepted = positive(3); // true.
+
+// += combines compatible delegates into a multicast invocation list.
+Action<string> both = display;
+both += message => Console.WriteLine(message.ToUpperInvariant());
+both("Ada"); // Calls display first, then the lambda: prints "Ada" and "ADA".
+// A returning multicast delegate returns only the LAST target's return value.
 ```
 
 A method name without parentheses is a **method group**; the compiler can convert it to a compatible delegate. Parentheses invoke the method instead. A lambda supplies an inline implementation.

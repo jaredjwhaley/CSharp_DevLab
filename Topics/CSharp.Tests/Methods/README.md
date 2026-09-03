@@ -5,9 +5,31 @@ Methods name reusable operations, accept parameters, and return results or perfo
 ## Syntax
 
 ```csharp
-int Add(int a, int b) => a + b;
+// A method declaration names the return type, method, and parameter types.
+// => gives a single expression as its body; its value becomes the result.
+int Add(int left, int right) => left + right;
+int sum = Add(2, 3); // Parentheses invoke the method; arguments supply 2 and 3.
+
+// An optional parameter has a default. Named arguments identify parameters
+// explicitly and can make calls clearer when arguments have similar types.
+string Greet(string name, string greeting = "Hello") => $"{greeting}, {name}";
+string message = Greet(name: "Ada"); // "Hello, Ada"
+
+// params permits separate arguments, which this declaration receives as an array.
+int Sum(params int[] values) => values.Sum();
+int total = Sum(1, 2, 3); // 6; Sum() returns 0 for this implementation.
+
+// ref passes the caller's variable by reference; it must already be assigned.
 void Increment(ref int value) => value++;
-bool valid = int.TryParse("42", out int result);
+int count = 2;
+Increment(ref count); // count is now 3.
+
+// out lets the called method assign a result to a caller variable.
+bool valid = int.TryParse("42", out int parsed); // true; parsed is 42.
+
+// in gives readonly access to the argument variable inside the method.
+int Double(in int value) => value * 2;
+int doubled = Double(in count); // 6; count remains 3.
 ```
 
 ## How the examples work

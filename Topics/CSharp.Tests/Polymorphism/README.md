@@ -5,8 +5,26 @@ Polymorphism lets the same call produce behavior appropriate to the actual objec
 ## Syntax
 
 ```csharp
-IShape shape = new Rectangle(3, 4);
-double area = shape.Area;
+interface IShape { int Area { get; } }
+
+// These independent implementations expose the same property contract.
+class Square : IShape
+{
+    private readonly int _side;
+    public Square(int side) => _side = side;
+    public int Area => _side * _side;
+}
+class Rectangle : IShape
+{
+    private readonly int _width, _height;
+    public Rectangle(int width, int height) { _width = width; _height = height; }
+    public int Area => _width * _height;
+}
+
+// Caller code uses one interface while runtime dispatch chooses each implementation:
+// IShape[] shapes = [new Square(3), new Rectangle(3, 4)];
+// foreach (IShape shape in shapes)
+//     Console.WriteLine(shape.Area); // 9, then 12; no concrete-type checks needed.
 ```
 
 ## How the examples work

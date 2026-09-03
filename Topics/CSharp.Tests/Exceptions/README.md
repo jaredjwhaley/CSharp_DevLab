@@ -5,9 +5,27 @@ Exceptions signal that an operation cannot complete normally. Catch blocks handl
 ## Syntax
 
 ```csharp
- try { Work(); }
- catch (FormatException) { /* recover from malformed text */ }
- finally { /* cleanup */ }
+string input = "twelve";
+try
+{
+    // Parse cannot interpret this input, so it throws instead of returning a value.
+    int number = int.Parse(input);
+    Console.WriteLine(number); // Not reached for "twelve".
+}
+catch (FormatException ex)
+{
+    // This catch handles only FormatException; ex exposes the failure details.
+    Console.WriteLine($"Invalid integer: {ex.Message}");
+}
+finally
+{
+    // Runs when control leaves the try/catch, including ordinary exception paths.
+    Console.WriteLine("Parsing attempt finished.");
+}
+
+// Inside a catch, use 'throw;' to propagate the current exception while retaining
+// its original stack trace. 'throw ex;' resets the throw location.
+// Use TryParse when malformed input is expected rather than exceptional.
 ```
 
 ## How the examples work

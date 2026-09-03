@@ -5,8 +5,22 @@ An interface defines a contract that unrelated types can implement. Consumers de
 ## Syntax
 
 ```csharp
-interface IFormatter { string Format(string value); }
-class Upper : IFormatter { public string Format(string value) => value.ToUpperInvariant(); }
+// An interface declaration describes a capability without requiring one base class.
+interface IFormatter
+{
+    string Format(string value); // Implementations must provide this operation.
+}
+
+// ':' means Upper implements IFormatter here (not that IFormatter is a class).
+class Upper : IFormatter
+{
+    public string Format(string value) => value.ToUpperInvariant();
+}
+
+// Inside caller code:
+// IFormatter formatter = new Upper(); // Variable exposes the interface contract.
+// string result = formatter.Format("Ada"); // "ADA"; Upper supplies the behavior.
+// Another IFormatter implementation could be substituted without changing this call.
 ```
 
 ## How the examples work

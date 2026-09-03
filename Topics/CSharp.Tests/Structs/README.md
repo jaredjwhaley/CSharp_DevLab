@@ -5,8 +5,18 @@ Structs are value types: assignment copies the value. Small immutable values are
 ## Syntax
 
 ```csharp
+// Declare this type at namespace scope. struct means value semantics;
+// record adds generated value equality; readonly restricts instance mutation.
+// The positional declaration supplies an (int X, int Y) constructor and properties.
 readonly record struct Point(int X, int Y);
-var moved = point with { X = 3 };
+
+// Inside a method:
+// var point = new Point(1, 2);
+// var copy = point;                 // Copies the value, not an object reference.
+// var moved = point with { X = 3 }; // Copies the value with X changed to 3.
+// bool equal = point == copy;       // true: generated equality compares X and Y.
+// point is still (1, 2); moved is (3, 2).
+// Point origin = default;           // (0, 0): default zero-initializes its fields.
 ```
 
 ## How the examples work
